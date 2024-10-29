@@ -1,5 +1,7 @@
 package Servicios;
 
+import Modelos.Persona;
+import Modelos.Urgentes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -15,10 +17,10 @@ public class JsonUtils {
         this.mapper = new ObjectMapper();
     }
 
-    public List<Object> leerArchivo(String nombreArch) throws IOException {
-        Object[] arreglo = new Object[0];
+    public List<Persona> leerArchivoPersonas(String nombreArch) throws IOException {
+        Persona[] arreglo = new Persona[0];
         try {
-            arreglo = mapper.readValue(new File(nombreArch), Object[].class);
+            arreglo = mapper.readValue(new File(nombreArch), Persona[].class);
 
             String aerString = mapper.writeValueAsString(arreglo);
         }catch (IOException e){
@@ -28,9 +30,9 @@ public class JsonUtils {
         return Arrays.asList(arreglo);
     }
 
-    public void escribir(String nombreArch, Object Object) throws IOException {
+    public void escribirPersona(String nombreArch, Persona Object) throws IOException {
         try {
-            List<Object> lista = this.leerArchivo(nombreArch);
+            List<Persona> lista = this.leerArchivoPersonas(nombreArch);
             lista.add(Object);
             this.mapper.writeValue(new File(nombreArch), lista);
 
@@ -39,6 +41,29 @@ public class JsonUtils {
             System.out.println(e.getMessage());
         }
     }
+    public List<Urgentes> leerArchivoUrgente(String nombreArch) throws IOException {
+        Urgentes[] arreglo = new Urgentes[0];
+        try {
+            arreglo = mapper.readValue(new File(nombreArch), Urgentes[].class);
 
+            String aerString = mapper.writeValueAsString(arreglo);
+        }catch (IOException e){
+            System.out.println(e.getMessage());
+        }
+
+        return Arrays.asList(arreglo);
+    }
+
+    public void escribirArchivoUrgente(String nombreArch, Urgentes Object) throws IOException {
+        try {
+            List<Urgentes> lista = this.leerArchivoUrgente(nombreArch);
+            lista.add(Object);
+            this.mapper.writeValue(new File(nombreArch), lista);
+
+            System.out.println("Agregado con exito");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }

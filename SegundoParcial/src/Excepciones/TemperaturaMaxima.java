@@ -12,7 +12,7 @@ public class TemperaturaMaxima extends Exception{
         JsonUtils utilidades = new JsonUtils();
         String nombreArchivo = "urgentes.json";
         System.out.println("Temperatura demasiado alta, se agrega al archivo Urgencia");
-        utilidades.escribir(nombreArchivo, new Urgentes(kit, barrio));
+        utilidades.escribirArchivoUrgente(nombreArchivo, new Urgentes(kit, barrio));
 
     }
 }
