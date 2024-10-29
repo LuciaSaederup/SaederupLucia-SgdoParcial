@@ -26,18 +26,22 @@ public class ServicioPersona {
 
     public void registrarPersona(Persona persona) throws IOException, PersonaYaExiste, KitsInsuficientes {
         try{
-            List<Persona> personas = utilidades.leerArchivoPersonas(this.archivoPersona);
+            List<Persona> personas  = new ArrayList<>();
+            personas = utilidades.leerArchivoPersonas(this.archivoPersona);
             if(!(servicioSS.getCantidadKits() <= 0)){
-                if(personas.equals(persona)){
-                    throw new PersonaYaExiste();
-                }else{
-                    int temperatura = 36 + (int)(Math.random() * 3);
-                    servicioSS.reducirKit();
-                    persona.setKit(servicioSS.getCantidadKits());
-                    personas.add(persona);
-                    utilidades.escribirPersona(archivoPersona, persona);
-                    servicioSS.testear(persona);
+                for (Persona pers : personas) {
+                    if (personas.equals(persona)) {
+                        throw new PersonaYaExiste();
+                    }
                 }
+                int temperatura = 36 + (int)(Math.random() * 3);
+                servicioSS.reducirKit();
+                persona.setKit(servicioSS.getCantidadKits());
+
+                personas.add( persona);
+                utilidades.escribirPersona(archivoPersona, persona);
+                servicioSS.testear(persona);
+
             }else{
                 throw new KitsInsuficientes();
             }
