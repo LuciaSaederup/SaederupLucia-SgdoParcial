@@ -25,8 +25,9 @@ public class ServicioPersona {
 
 
     public void registrarPersona(Persona persona) throws IOException, PersonaYaExiste, KitsInsuficientes {
+        List<Persona> personas  = new ArrayList<>();
         try{
-            List<Persona> personas  = new ArrayList<>();
+
             personas = utilidades.leerArchivoPersonas(this.archivoPersona);
             if(!(servicioSS.getCantidadKits() <= 0)){
                 for (Persona pers : personas) {
@@ -37,8 +38,6 @@ public class ServicioPersona {
                 int temperatura = 36 + (int)(Math.random() * 3);
                 servicioSS.reducirKit();
                 persona.setKit(servicioSS.getCantidadKits());
-
-                personas.add( persona);
                 utilidades.escribirPersona(archivoPersona, persona);
                 servicioSS.testear(persona);
 

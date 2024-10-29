@@ -32,10 +32,10 @@ public class JsonUtils {
         return Arrays.asList(arreglo);
     }
 
-    public void escribirPersona(String nombreArch, Persona Object) throws IOException {
+    public void escribirPersona(String nombreArch, Persona persona) throws IOException {
         try {
             List<Persona> lista = this.leerArchivoPersonas(nombreArch);
-            lista.add(Object);
+            lista.add(persona);
             this.mapper.writeValue(new File(nombreArch), lista);
 
             System.out.println("Agregado con exito");
