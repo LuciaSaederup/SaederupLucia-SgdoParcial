@@ -1,12 +1,14 @@
 package Servicios;
 
 import Modelos.Persona;
+import Modelos.SanosYAislados;
 import Modelos.Urgentes;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,6 +66,17 @@ public class JsonUtils {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public void persistirEnArchivoSanosYAislados(String nombreArch) throws IOException {
+        List<Persona> personas = this.leerArchivoPersonas("personas.json");
+        List<Urgentes> urgentes = this.leerArchivoUrgente("urgentes.json");
+
+        SanosYAislados sanosYAislados = new SanosYAislados();
+        sanosYAislados.setAislados(urgentes);
+        sanosYAislados.setSanos(personas);
+        this.mapper.writeValue(new File(nombreArch),sanosYAislados);
+
     }
 
 }

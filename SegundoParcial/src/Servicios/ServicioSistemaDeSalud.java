@@ -58,7 +58,7 @@ public class ServicioSistemaDeSalud {
 
     public void aislar(Persona persona) throws TemperaturaMaxima, IOException {
         if(persona.getTemperatura() >= 38){
-            throw new TemperaturaMaxima(persona.getKit(), persona.getBarrio());
+            throw new TemperaturaMaxima(persona.getKit(), persona.getBarrio(), persona.getTemperatura());
         }
     }
 }

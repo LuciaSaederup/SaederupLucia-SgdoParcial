@@ -8,11 +8,11 @@ import java.io.IOException;
 
 public class TemperaturaMaxima extends Exception{
 
-    public TemperaturaMaxima(int kit, String barrio) throws IOException {
+    public TemperaturaMaxima(int kit, String barrio, int temperatura) throws IOException {
         JsonUtils utilidades = new JsonUtils();
         String nombreArchivo = "urgentes.json";
         System.out.println("Temperatura demasiado alta, se agrega al archivo Urgencia");
-        utilidades.escribirArchivoUrgente(nombreArchivo, new Urgentes(kit, barrio));
+        utilidades.escribirArchivoUrgente(nombreArchivo, new Urgentes(kit, barrio, temperatura));
 
     }
 }
