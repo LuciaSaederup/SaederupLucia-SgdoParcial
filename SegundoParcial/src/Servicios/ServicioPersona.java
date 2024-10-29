@@ -2,6 +2,7 @@ package Servicios;
 
 import Excepciones.KitsInsuficientes;
 import Excepciones.PersonaYaExiste;
+import Excepciones.TemperaturaMaxima;
 import Modelos.Persona;
 
 import java.io.IOException;
@@ -46,6 +47,8 @@ public class ServicioPersona {
 
         }catch (IOException e){
             System.out.println(e.getMessage());
+        } catch (TemperaturaMaxima e) {
+            throw new RuntimeException(e);
         }
     }
 
