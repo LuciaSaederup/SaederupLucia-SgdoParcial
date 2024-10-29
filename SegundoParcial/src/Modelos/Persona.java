@@ -1,5 +1,7 @@
 package Modelos;
 
+import java.util.Objects;
+
 public class Persona {
     private String nombre;
     private String apellido;
@@ -7,6 +9,8 @@ public class Persona {
     private String barrio;
     private String ocupacion;
     private Long dni;
+    private int kit;
+    private Integer temperatura;
 
     public Persona(String nombre, String apellido, Integer edad, String barrio, String ocupacion, Long dni) {
         this.nombre = nombre;
@@ -68,6 +72,34 @@ public class Persona {
         this.dni = dni;
     }
 
+    public int getKit() {
+        return kit;
+    }
+
+    public void setKit(int kit) {
+        this.kit = kit;
+    }
+
+    public Integer getTemperatura() {
+        return temperatura;
+    }
+
+    public void setTemperatura(Integer temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Persona persona)) return false;
+        return Objects.equals(dni, persona.dni);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(dni);
+    }
+
     @Override
     public String toString() {
         return "Persona{" +
@@ -77,6 +109,8 @@ public class Persona {
                 ", barrio='" + barrio + '\'' +
                 ", ocupacion='" + ocupacion + '\'' +
                 ", dni=" + dni +
+                ", kit=" + kit +
+                ", temperatura=" + temperatura +
                 '}';
     }
 }
